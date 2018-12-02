@@ -11,7 +11,7 @@ namespace CalendarApp.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Title = "Calendar Application";
+            ViewBag.Title = "Calendar application";
 
             return View();
         }
