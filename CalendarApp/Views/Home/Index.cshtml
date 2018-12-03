@@ -1,48 +1,74 @@
 ﻿
 <h1>@ViewBag.Title</h1>
 
-<form class="form-horizontal" data-bind="submit: addEvent">
+<div class="row">
+    <!-- add event form-->
+    
+    <div class="col-md-6">
+        <h4 style="text-decoration:underline;color:darkolivegreen;">Create new event</h4>
+        <form class="form-horizontal" data-bind="submit: addEvent">
+            <div class="form-group" data-bind="with: newEvent">
+                <label for="inputEventName" class="col-sm-4 control-label">Event name</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="EventName" data-bind="value:EventName" required />
+                </div>
 
-    <div class="form-group" data-bind="with: newEvent">
-        <label for="inputEventName" class="col-sm-2 control-label">Event name</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="EventName" data-bind="value:EventName" required />
-        </div>
+                <label for="inputDateTime" class="col-sm-4 control-label">Date and time</label>
+                <div class="col-sm-5">
+                    <input type="text" class="form-control" id="DateAndTime" data-bind="value:DateAndTime" required
+                           placeholder="dd.mm.yyyy HH:MM" />
+                </div>
 
-        <label for="inputDateTime" class="col-sm-2 control-label">Date and time</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="DateAndTime" data-bind="value:DateAndTime" required
-                   placeholder="dd.mm.yyyy HH:MM"/>
-        </div>
+                <label for="inputDuration" class="col-sm-4 control-label">Duration</label>
+                <div class="col-sm-5">
+                    <input type="number" class="form-control" id="Duration" data-bind="value:Duration" required min="1" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Create event</button>
+        </form>
 
-        <label for="inputDuration" class="col-sm-2 control-label">Duration</label>
-        <div class="col-sm-10">
-            <input type="number" class="form-control" id="Duration" data-bind="value:Duration" required min="1" />
-        </div>
+        <div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
+        <div class="alert alert-danger" data-bind="visible: success"><p data-bind="text: success"></p></div>
     </div>
-    <button type="submit" class="btn btn-default">Create event</button>
-</form>
 
-<div class="alert alert-danger" data-bind="visible: error"><p data-bind="text: error"></p></div>
-<div class="alert alert-danger" data-bind="visible: success"><p data-bind="text: success"></p></div>
-
-
-<!-- search form-->
-@*<form class="form-horizontal" data-bind="submit: searchEvents">
-    <div class="form-group" data-bind="with: searchValues">
-        <label for="inputYear" class="col-sm-2 control-label">Year</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" id="Year" data-bind="value:Year" />
-        </div>
+    <!-- search form-->
+    
+    <div class="col-md-4">
+        <h4 style="text-decoration:underline;color:darkolivegreen;">Search events</h4>
+        <form class="form-horizontal" data-bind="submit: searchEvents">
+            <div class="form-group" data-bind="with: searchValues">
+                <label for="inputYear" class="col-sm-2 control-label">Year</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="Year" data-bind="value:Year" />
+                </div>
+                <label for="inputMonth" class="col-sm-2 control-label">Month</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="Month" data-bind="value:Month" />
+                </div>
+                <label for="inputDay" class="col-sm-2 control-label">Day</label>
+                <div class="col-sm-10">
+                    <input type="number" class="form-control" id="Day" data-bind="value:Day" />
+                </div>
+                <label for="inputTime" class="col-sm-2 control-label">Time</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Time" data-bind="value:Time" placeholder="HH:MM"/>
+                </div>
+                <label for="inputSearch" class="col-sm-2 control-label">Search</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="Search" data-bind="value:Search" />
+                </div>
+            </div>
+            <button type="submit" class="btn btn-default">Search</button>
+        </form>
     </div>
-    <button type="submit" class="btn btn-default">Submit</button>
-</form>*@
+</div>
+<br />
 
 <table class="table">
     <tr>
         <th>Event Name</th>
         <th>Date and time</th>
-        <th>Duration</th>
+        <th>Duration / hours</th>
     </tr>
     <tbody data-bind="foreach: events">
         <tr>

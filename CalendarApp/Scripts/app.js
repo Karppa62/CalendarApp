@@ -9,24 +9,32 @@
         DateAndTime: ko.observable(),
         Duration: ko.observable()
     }
+    
+    var searchUri = '/api/event/search';
 
-    //self.searchValues = {
-    //    Year: ko.observable()
-    //}
+    self.searchValues = {
+        Year: ko.observable(),
+        Month: ko.observable(),
+        Day: ko.observable(),
+        Time: ko.observable(),
+        Search: ko.observable()
+    }
 
-
-    //self.searchEvents = function (formElement) {
-    //    var search = {
-    //        Year: self.searchValues.Year()
-    //    };
-
-    //    ajaxHelper(eventUri, 'GET', search).done(function (data) {
-    //        self.events(data)
-    //    });
-    //}
+    self.searchEvents = function (formElement) {
+        var search = {
+            Year: self.searchValues.Year(),
+            Month: self.searchValues.Month(),
+            Day: self.searchValues.Day(),
+            Time: self.searchValues.Time(),
+            Search: self.searchValues.Search()
+        };
+    
+        ajaxHelper(searchUri, 'GET', search).done(function (data) {
+            self.events(data)
+        });
+    }
 
     var eventUri = '/api/event/';
-
 
     self.addEvent = function (formElement) {
         var event = {
